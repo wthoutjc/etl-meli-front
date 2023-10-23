@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="flex flex-col max-w-7xl w-full">
         <section>
           <div className="mb-2">
-            <p className="text-xs md:text-[14px]">Connect with me:</p>
+            <p className="text-xs md:text-[14px]">Tendencias Avanzadas de Ingeniería de Software</p>
           </div>
           <div></div>
         </section>
