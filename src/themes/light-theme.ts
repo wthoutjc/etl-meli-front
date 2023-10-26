@@ -14,6 +14,10 @@ const lightTheme = createTheme({
     secondary: {
       main: "#f50057",
     },
+    background: {
+      paper: "#ecf0f1",
+      default: "#b2bec3",
+    },
   },
   typography: {
     fontFamily: montserrat.style.fontFamily,

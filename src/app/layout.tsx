@@ -4,12 +4,21 @@ import ThemeRegistry from "@/themes/ThemeRegistry";
 
 // Components
 import { Navbar, SearchDrawer } from "@/components";
-import { Box } from "@mui/material";
 
 export const metadata: Metadata = {
   title: "Frontend - MELI",
-  description: "Frontend - MELI",
-  keywords: ["Frontend - MELI"],
+  description: "Aplicación de búsqueda de productos de Mercado Libre",
+  keywords: [
+    "MELI",
+    "Mercado Libre",
+    "ETL",
+    "ELT/ETL",
+    "MySQL",
+    "Python",
+    "NextJS",
+    "Universidad Distrital",
+    "Tendencias avanzadas en ingeniería de software",
+  ],
 };
 
 interface Props {
@@ -23,23 +32,8 @@ export default function RootLayout({ children }: Props) {
       <ThemeRegistry>
         <body>
           <SearchDrawer />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              height: "100%",
-            }}
-          >
-            <Navbar />
-            <Box
-              sx={{
-                height: "100%",
-              }}
-            >
-              {children}
-            </Box>
-          </Box>
+          <Navbar />
+          {children}
         </body>
       </ThemeRegistry>
     </html>

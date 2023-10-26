@@ -56,6 +56,7 @@ const SearchMenu = () => {
 
   const categoryId =
     watch("category") === "Seleccionar" ? "" : watch("category");
+  const productId = watch("product") === "Seleccionar" ? "" : watch("product");
 
   const onSubmit = async ({ product }: SearchProps) => {
     setLoading(true);
@@ -75,7 +76,7 @@ const SearchMenu = () => {
         setCategories(res);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   useEffect(() => {
@@ -166,7 +167,7 @@ const SearchMenu = () => {
         <Button
           fullWidth
           type="submit"
-          disabled={loading}
+          disabled={loading || !categoryId || !productId}
           variant="contained"
           color="success"
           endIcon={<ManageSearchIcon />}

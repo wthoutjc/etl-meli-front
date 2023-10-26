@@ -1,35 +1,82 @@
 "use client";
-import { Box } from "@mui/material";
+import { Box, Divider, Paper, Typography } from "@mui/material";
 
 // Zustand
 import { useDetailsStore } from "@/zustand";
 
 // Components
 import { DetailCard } from "@/components/Details/DetailCard";
+import { NoDetails } from "@/components/Details/NoDetails";
+import { Recently } from "@/components/Details/Recently";
+import { SellerInfo } from "@/components/Seller/SellerInfo";
+import { ToggleMenu } from "@/components/ui/ToggleMenu/ToggleMenu";
+
+// Icons
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const Details = () => {
   const { productDetails } = useDetailsStore();
   const { details } = productDetails;
-  console.log(details);
 
   return (
     <Box
       sx={{
         display: "flex",
-        flexWrap: "wrap",
+        overflow: "hidden",
+        height: "100%",
       }}
     >
-      {details.length > 0 ? (
-        details.map((product, i) => <DetailCard key={i} product={product} />)
-      ) : (
-        <Box
-          sx={{
-            p: 2,
-          }}
-        >
-          Accede al menú de búsqueda y selecciona un producto
-        </Box>
-      )}
+      <Paper
+        sx={{
+          width: "80%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          overflow: "auto",
+        }}
+      >
+        {details.length === 0 ? (
+          <NoDetails />
+        ) : (
+          <>
+            <Box sx={{ display: "flex", p: 1.5, alignItems: "center" }}>
+              <AddShoppingCartIcon sx={{ mr: 1 }} />
+              <Typography variant="h6" fontWeight={500}>
+                Resultados
+              </Typography>
+            </Box>
+            <Divider />
+            <Box
+              sx={{
+                display: "flex",
+              }}
+            >
+              <ToggleMenu />
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  flexWrap: "Wrap",
+                }}
+              >
+                {details.map((product, i) => (
+                  <DetailCard key={i} product={product} />
+                ))}
+              </Box>
+            </Box>
+          </>
+        )}
+      </Paper>
+      <Paper
+        sx={{
+          width: "20%",
+          display: "flex",
+          flexDirection: "column",
+          ml: 2,
+        }}
+      >
+        {details.length === 0 ? <Recently /> : <SellerInfo />}
+      </Paper>
     </Box>
   );
 };
