@@ -1,25 +1,31 @@
 import { create } from "zustand";
-import { ModalSlice } from "@/libs";
-import { ModalState } from "@/interfaces";
 
-// export const useAppStore = create<ModalState>()((...a) => ({
-//   ...createModalSlice(...a),
-// }));
+// Slices & Initial states
+import { DrawerSlice, DetailsSlice } from "@/libs";
 
-const initialState: ModalState = {
-  modalType: null,
-  modalProps: {},
-  show: false,
+// Interfaces
+import { DrawerState, DetailsState } from "@/interfaces";
+
+const drawerInitialState: DrawerState = {
+  open: false,
 };
 
-export const useModalStore = create<ModalSlice>()((set) => ({
-  modal: initialState,
-  showModal: (modal: ModalState) =>
+const detailsInitialState: DetailsState = {
+  details: [],
+};
+
+export const useDrawerStore = create<DrawerSlice>()((set) => ({
+  drawer: drawerInitialState,
+  setDrawer: (drawer: DrawerState) =>
     set({
-      modal,
+      drawer,
     }),
-  hideModal: () =>
+}));
+
+export const useDetailsStore = create<DetailsSlice>()((set) => ({
+  productDetails: detailsInitialState,
+  setDetails: (productDetails: DetailsState) =>
     set({
-      modal: initialState,
+      productDetails,
     }),
 }));

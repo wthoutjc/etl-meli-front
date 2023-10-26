@@ -1,12 +1,10 @@
 import "../styles/globals.css";
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import ThemeRegistry from "@/themes/ThemeRegistry";
 
 // Components
-import { Footer, Modal, Navbar, SearchSide } from "@/components";
-
-const montserrat = Montserrat({ subsets: ["latin"] });
+import { Navbar, SearchDrawer } from "@/components";
+import { Box } from "@mui/material";
 
 export const metadata: Metadata = {
   title: "Frontend - MELI",
@@ -21,25 +19,27 @@ interface Props {
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang="es">
+    <html>
       <ThemeRegistry>
-        <body
-          className={`${montserrat.className} flex flex-col max-w-full min-h-screen bg-slate-100 dark:bg-gray-900 dark:text-slate-100`}
-        >
-          <Modal />
-          <Navbar />
-          <div className="flex flex-[1_0_auto] justify-center">
-            <div className="flex-row max-w-7xl w-full" id="content">
-              <SearchSide />
-              <div
-                className="flex flex-col md:p-0 w-full bg-rose-700"
-                id="content"
-              >
-                {children}
-              </div>
-            </div>
-          </div>
-          <Footer />
+        <body>
+          <SearchDrawer />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              height: "100%",
+            }}
+          >
+            <Navbar />
+            <Box
+              sx={{
+                height: "100%",
+              }}
+            >
+              {children}
+            </Box>
+          </Box>
         </body>
       </ThemeRegistry>
     </html>

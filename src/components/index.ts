@@ -1,5 +1,3 @@
 export * from "./ui";
-export * from "./SearchSide";
-
-// client components
-export { Carousel } from "./ui";
+export * from "./SearchDrawer";
+export * from "./Details";

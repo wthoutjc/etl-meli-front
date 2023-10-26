@@ -1,12 +1,10 @@
 "use client";
-
-import { createTheme, ThemeOptions, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { NextAppDirEmotionCacheProvider } from "./EmotionCache";
 
-const themeOptions: ThemeOptions = {};
-
-const theme = createTheme(themeOptions);
+// Themes
+import { lightTheme } from "@/themes";
 
 export default function ThemeRegistry({
   children,
@@ -19,7 +17,7 @@ export default function ThemeRegistry({
         key: "mui",
       }}
     >
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={lightTheme}>
         <CssBaseline />
         {children}
       </ThemeProvider>
