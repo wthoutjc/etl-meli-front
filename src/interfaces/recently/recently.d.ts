@@ -1,8 +1,9 @@
-export interface ProductDetails {
+export interface Recently {
   k_products: string;
   name: string;
-  etl_date: date;
+  price: number;
+  condition: string;
+  date: string;
   amount_sold: number;
   available_quantity: number;
-  k_sellers: string;
 }

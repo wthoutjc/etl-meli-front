@@ -17,12 +17,12 @@ const Welcome = () => {
         mb: 2,
       }}
     >
-      <Typography variant="h4" fontWeight={500} sx={{ mb: 1 }}>
+      <Typography variant="h5" fontWeight={600} sx={{ mb: 1 }}>
         Bienvenido a la aplicación de búsqueda de productos de Mercado Libre
       </Typography>
       <Stack direction="row" spacing={2}>
-        <Chip label="Mercado Libre" />
-        <Chip label="Mercado Libre" />
+        <Chip size="small" label="Mercado Libre" />
+        <Chip size="small" label="Mercado Libre" />
       </Stack>
       <Divider
         sx={{
@@ -32,7 +32,7 @@ const Welcome = () => {
           mb: 1,
         }}
       />
-      <Typography variant="h5" fontWeight={400}>
+      <Typography variant="body1" fontWeight={400}>
         Accede al menú de búsqueda y selecciona un producto
       </Typography>
     </Paper>

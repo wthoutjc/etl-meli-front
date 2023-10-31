@@ -11,17 +11,17 @@ const DetailCard = ({ product }: Props) => {
   const {
     amount_sold,
     available_quantity,
-    date,
-    k_product_details,
+    etl_date,
     k_products,
+    name,
     k_sellers,
   } = product;
   return (
     <Card sx={{ width: 325, m: 1 }}>
-      <CardHeader title={k_products} subheader={k_product_details} />
+      <CardHeader title={k_products} subheader={name} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {k_sellers} - {date}
+          {k_sellers} - {etl_date}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           available_quantity: {available_quantity}

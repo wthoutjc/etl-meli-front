@@ -4,4 +4,10 @@ const getProductDetails = async (id: string) => {
   return productDetails;
 };
 
-export { getProductDetails };
+const getRecently = async (date: string) => {
+  const res = await fetch(`/api/product-details/recently?date=${date}`);
+  const recently = await res.json();
+  return recently;
+};
+
+export { getProductDetails, getRecently };

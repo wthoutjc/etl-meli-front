@@ -1,41 +1,87 @@
 "use client";
-import { useState } from "react";
-import { ToggleButtonGroup } from "@mui/material";
+import {
+  Box,
+  ButtonGroup,
+  IconButton,
+  Stack,
+  ToggleButtonGroup,
+  Tooltip,
+} from "@mui/material";
+import { Theme, useTheme } from "@mui/material/styles";
 
 // Icons
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import ToggleButton from "@mui/material/ToggleButton";
+import AddIcon from "@mui/icons-material/Add";
 
-const ToggleMenu = () => {
-  const [view, setView] = useState("list");
+type ViewDetails = "grid" | "list" | "graph";
+
+interface Props {
+  view: ViewDetails;
+  setView: React.Dispatch<React.SetStateAction<ViewDetails>>;
+}
+
+const ToggleMenu = ({ view, setView }: Props) => {
+  const theme = useTheme<Theme>();
 
   const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    nextView: string
+    _: React.MouseEvent<HTMLElement>,
+    nextView: ViewDetails
   ) => {
     setView(nextView);
   };
 
   return (
-    <ToggleButtonGroup
-      orientation="vertical"
-      value={view}
-      exclusive
-      onChange={handleChange}
-      sx={{ p: 1 }}
-    >
-      <ToggleButton value="list" aria-label="list">
-        <ViewListIcon />
-      </ToggleButton>
-      <ToggleButton value="module" aria-label="module">
-        <ViewModuleIcon />
-      </ToggleButton>
-      <ToggleButton value="quilt" aria-label="quilt">
-        <ViewQuiltIcon />
-      </ToggleButton>
-    </ToggleButtonGroup>
+    <Stack spacing={3} direction="column">
+      <ToggleButtonGroup
+        orientation="vertical"
+        value={view}
+        exclusive
+        onChange={handleChange}
+        sx={{ p: 1 }}
+      >
+        <ToggleButton value="graph" aria-label="graph">
+          <ViewListIcon />
+        </ToggleButton>
+        <ToggleButton value="grid" aria-label="grid">
+          <ViewModuleIcon />
+        </ToggleButton>
+        <ToggleButton value="list" aria-label="list">
+          <ViewQuiltIcon />
+        </ToggleButton>
+      </ToggleButtonGroup>
+      <ButtonGroup
+        orientation="vertical"
+        aria-label="vertical outlined button group"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Tooltip title="Añadir a general">
+          <IconButton
+            size="small"
+            key="one"
+            sx={{
+              backgroundColor: theme.palette.primary.main,
+              "&:hover": {
+                backgroundColor: theme.palette.primary.dark,
+              },
+            }}
+          >
+            <AddIcon
+              sx={{
+                fill: theme.palette.primary.contrastText,
+              }}
+            />
+          </IconButton>
+        </Tooltip>
+      </ButtonGroup>
+    </Stack>
   );
 };
 
