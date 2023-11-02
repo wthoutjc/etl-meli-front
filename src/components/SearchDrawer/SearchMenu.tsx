@@ -1,12 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Button,
   CircularProgress,
   Divider,
   InputAdornment,
   MenuItem,
+  Switch,
   TextField,
   Typography,
 } from "@mui/material";
@@ -24,6 +28,7 @@ import { useForm } from "react-hook-form";
 // Icons
 import TaskIcon from "@mui/icons-material/Task";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 // Interfaces
 import { Category, Product } from "@/interfaces";
@@ -31,10 +36,13 @@ import { Category, Product } from "@/interfaces";
 interface SearchProps {
   category: string;
   product: string;
+  from?: string;
+  to?: string;
 }
 
 const SearchMenu = () => {
   const router = useRouter();
+  const [expanded, setExpanded] = useState<boolean>(false);
 
   const { drawer, setDrawer } = useUIStore();
   const { open } = drawer;
@@ -64,6 +72,7 @@ const SearchMenu = () => {
     reset();
     setDrawer({ open: !open });
     setProducts([]);
+    setExpanded(false);
     router.push(`/products/${product}`);
   };
 
@@ -163,6 +172,84 @@ const SearchMenu = () => {
             </MenuItem>
           ))}
         </TextField>
+        <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1bh-content"
+            id="panel1bh-header"
+          >
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>Fecha</Typography>
+            <Typography sx={{ color: "text.secondary" }}>
+              Búsqueda avanzada
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <TextField
+              fullWidth
+              type="date"
+              disabled={loading}
+              autoComplete="off"
+              sx={{ marginBottom: "1em" }}
+              placeholder="Ej: 2021-10-01"
+              label="Desde"
+              error={!!errors.from}
+              helperText={
+                !!errors.from
+                  ? errors.from.message
+                  : "Selecciona la fecha de inicio"
+              }
+              {...register("from", {
+                validate: (value) =>
+                  value &&
+                  expanded &&
+                  (watch("to") === undefined ||
+                    value <= (watch("to") ?? Infinity))
+                    ? "La fecha no puede ser mayor"
+                    : undefined,
+              })}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    {loading ? <CircularProgress size={20} /> : <TaskIcon />}
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              fullWidth
+              type="date"
+              disabled={loading}
+              autoComplete="off"
+              sx={{ marginBottom: "1em" }}
+              placeholder="Ej: 2021-10-02"
+              label="Hasta"
+              error={!!errors.to}
+              helperText={
+                !!errors.to ? errors.to.message : "Selecciona la fecha de fin"
+              }
+              {...register("to", {
+                required:
+                  expanded && watch("from") !== undefined
+                    ? "La fecha es requerida"
+                    : undefined,
+                validate: (value) =>
+                  value &&
+                  expanded &&
+                  (watch("from") === undefined ||
+                    value >= (watch("from") ?? -Infinity))
+                    ? "La fecha no puede ser menor"
+                    : undefined,
+              })}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    {loading ? <CircularProgress size={20} /> : <TaskIcon />}
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </AccordionDetails>
+        </Accordion>
         <Button
           fullWidth
           type="submit"
@@ -170,6 +257,7 @@ const SearchMenu = () => {
           variant="contained"
           color="success"
           endIcon={<ManageSearchIcon />}
+          sx={{ mt: 2 }}
         >
           <Typography variant="button">Buscar</Typography>
         </Button>

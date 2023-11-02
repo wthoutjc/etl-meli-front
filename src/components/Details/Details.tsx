@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Paper, Tooltip, Typography } from "@mui/material";
 
 // Components
 import { DetailCard } from "@/components/Details/DetailCard";
@@ -12,9 +12,11 @@ import { DoughnutDetails } from "@/components/Details/Doughnuts/DoughnutDetails"
 
 // Icons
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import HelpIcon from "@mui/icons-material/Help";
 
 // Interfaces
 import { ProductDetails } from "@/interfaces";
+import { EnhancedTable } from "../ui/Table";
 
 type ViewDetails = "grid" | "list" | "graph";
 
@@ -45,15 +47,28 @@ const Details = ({ details }: Props) => {
             display: "flex",
             p: 1.5,
             alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          <AddShoppingCartIcon sx={{ mr: 1 }} />
-          <Typography variant="h6" fontWeight={500}>
-            Resultados -{" "}
-            <b>
-              {details[0].k_products} - {details[0].name}
-            </b>
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <AddShoppingCartIcon sx={{ mr: 1 }} />
+            <Typography variant="h6" fontWeight={500}>
+              Resultados -{" "}
+              <b>
+                {details[0].k_products} - {details[0].name}
+              </b>
+            </Typography>
+          </Box>
+          <Tooltip title="Ayuda">
+            <IconButton size="small">
+              <HelpIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
         </Box>
         <Divider />
 
@@ -92,9 +107,10 @@ const Details = ({ details }: Props) => {
                 sx={{
                   width: "100%",
                   display: "flex",
+                  p: 2,
                 }}
               >
-                List
+                <EnhancedTable />
               </Box>
             )}
             {view === "grid" && (

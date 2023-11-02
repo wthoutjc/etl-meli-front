@@ -10,6 +10,7 @@ import { ProductHistory } from "@/interfaces";
 
 // Components
 import { DoughnutCard } from "@/components/Details/Doughnuts/DoughnutCard";
+import { DoughnutSkeleton } from "@/components/Details/Doughnuts/DoughnutSkeleton";
 
 // Icons
 import DataSaverOffIcon from "@mui/icons-material/DataSaverOff";
@@ -44,9 +45,11 @@ const DoughnutDetails = ({ productId }: Props) => {
         </Typography>
       </Box>
       <Divider />
-      {details.map((product, i) => (
-        <DoughnutCard key={i} {...product} />
-      ))}
+      {details.length > 0 ? (
+        details.map((product, i) => <DoughnutCard key={i} {...product} />)
+      ) : (
+        <DoughnutSkeleton />
+      )}
     </Paper>
   );
 };
