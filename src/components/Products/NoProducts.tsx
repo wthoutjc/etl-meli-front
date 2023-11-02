@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
-const NoDetails = () => {
+const NoProducts = () => {
   return (
     <Box
       sx={{
@@ -14,7 +14,7 @@ const NoDetails = () => {
       }}
     >
       <Typography variant="h3" sx={{ mb: 5 }} fontWeight={700}>
-        No hay resultados para esta búsqueda
+        No hay productos añadidos
       </Typography>
       <Image
         src="https://res.cloudinary.com/ddmeptk5c/image/upload/f_auto,q_auto/v1/portfolio/assets/xpdj3e1svfrpuhpuapzt"
@@ -26,4 +26,4 @@ const NoDetails = () => {
   );
 };
 
-export { NoDetails };
+export { NoProducts };

@@ -1,31 +1,28 @@
 import { create } from "zustand";
 
 // Slices & Initial states
-import { DrawerSlice, DetailsSlice } from "@/libs";
+import { UISlice, ProductsSlice } from "@/libs";
 
 // Interfaces
-import { DrawerState, DetailsState } from "@/interfaces";
+import { UIState, ProductDetails, DrawerState, Alert } from "@/interfaces";
 
-const drawerInitialState: DrawerState = {
-  open: false,
+const uiInitialState: UIState = {
+  drawer: {
+    open: false,
+  },
+  alerts: [],
 };
 
-const detailsInitialState: DetailsState = {
-  details: [],
-};
-
-export const useDrawerStore = create<DrawerSlice>()((set) => ({
-  drawer: drawerInitialState,
-  setDrawer: (drawer: DrawerState) =>
-    set({
-      drawer,
-    }),
+export const useUIStore = create<UISlice>((set) => ({
+  ...uiInitialState,
+  setDrawer: (drawer: DrawerState) => set({ drawer }),
+  setAlerts: (alerts: Alert[]) => set({ alerts }),
 }));
 
-export const useDetailsStore = create<DetailsSlice>()((set) => ({
-  productDetails: detailsInitialState,
-  setDetails: (productDetails: DetailsState) =>
+export const useProductsStore = create<ProductsSlice>()((set) => ({
+  products: [],
+  addProducts: (products: ProductDetails[][]) =>
     set({
-      productDetails,
+      products,
     }),
 }));

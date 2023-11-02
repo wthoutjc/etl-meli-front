@@ -1,2 +1,2 @@
-export * from "./drawerSlice";
+export * from "./uiSlice";
 export * from "./productDetailsSlice";

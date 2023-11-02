@@ -10,14 +10,14 @@ import {
 } from "@mui/material";
 
 // Zustand
-import { useDrawerStore } from "@/zustand";
+import { useUIStore } from "@/zustand";
 import { SearchMenu } from "@/components/SearchDrawer/SearchMenu";
 
 // Icons
 import MenuIcon from "@mui/icons-material/Menu";
 
 const SearchDrawer = () => {
-  const { drawer, setDrawer } = useDrawerStore();
+  const { drawer, setDrawer } = useUIStore();
   const { open } = drawer;
 
   const toggleDrawer =

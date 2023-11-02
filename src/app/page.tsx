@@ -1,44 +1,48 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 
 // Components
-import { Details, Welcome } from "@/components";
+import { Recently, Welcome } from "@/components";
 
-// Moment
-import moment from "moment";
+// Client Components
+import { Products } from "@/components/Products/Products";
 
 export default function Home() {
   return (
-    <Box
-      sx={{
-        p: 1.4,
-        display: "flex",
-        flexDirection: "column",
-        overflow: "auto",
-        height: "100%",
-      }}
-    >
+    <>
+      <Welcome />
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-evenly",
+          overflow: "hidden",
+          height: "100%",
         }}
       >
-        <Typography variant="body1" sx={{ mb: 1 }}>
-          Universidad Distrital Francisco José de Caldas
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 1 }}>
-          <i>
-            {moment().toDate().toLocaleDateString("es-ES", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </i>
-        </Typography>
+        <Paper
+          sx={{
+            width: "80%",
+            height: "100%",
+            overflow: "auto",
+          }}
+        >
+          <Products />
+        </Paper>
+        <Box
+          sx={{
+            width: "20%",
+            display: "flex",
+            flexDirection: "column",
+            ml: 2,
+          }}
+        >
+          <Paper
+            sx={{
+              overflow: "auto",
+            }}
+          >
+            <Recently />
+          </Paper>
+        </Box>
       </Box>
-
-      <Welcome />
-      <Details />
-    </Box>
+    </>
   );
 }

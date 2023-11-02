@@ -1,6 +1,5 @@
 "use client";
 import {
-  Box,
   ButtonGroup,
   IconButton,
   Stack,
@@ -16,21 +15,40 @@ import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import ToggleButton from "@mui/material/ToggleButton";
 import AddIcon from "@mui/icons-material/Add";
 
+// Zustand
+import { useProductsStore, useUIStore } from "@/zustand";
+
+// Interfaces
+import { ProductDetails } from "@/interfaces";
+
 type ViewDetails = "grid" | "list" | "graph";
 
 interface Props {
   view: ViewDetails;
   setView: React.Dispatch<React.SetStateAction<ViewDetails>>;
+  details: ProductDetails[];
 }
 
-const ToggleMenu = ({ view, setView }: Props) => {
+const ToggleMenu = ({ view, setView, details }: Props) => {
   const theme = useTheme<Theme>();
+  const { products, addProducts } = useProductsStore();
+  const { setAlerts } = useUIStore((state) => state);
 
   const handleChange = (
     _: React.MouseEvent<HTMLElement>,
     nextView: ViewDetails
   ) => {
     setView(nextView);
+  };
+
+  const handleProduct = () => {
+    addProducts([...products, details]);
+    setAlerts([
+      {
+        severity: "success",
+        message: "Producto añadido correctamente",
+      },
+    ]);
   };
 
   return (
@@ -72,6 +90,7 @@ const ToggleMenu = ({ view, setView }: Props) => {
                 backgroundColor: theme.palette.primary.dark,
               },
             }}
+            onClick={handleProduct}
           >
             <AddIcon
               sx={{

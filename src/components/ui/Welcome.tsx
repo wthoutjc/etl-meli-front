@@ -1,14 +1,7 @@
-"use client";
 import { Chip, Divider, Paper, Stack, Typography } from "@mui/material";
 
-// Zustand
-import { useDetailsStore } from "@/zustand";
-
 const Welcome = () => {
-  const { productDetails } = useDetailsStore();
-  const { details } = productDetails;
-
-  return details.length === 0 ? (
+  return (
     <Paper
       sx={{
         p: 2,
@@ -21,8 +14,9 @@ const Welcome = () => {
         Bienvenido a la aplicación de búsqueda de productos de Mercado Libre
       </Typography>
       <Stack direction="row" spacing={2}>
-        <Chip size="small" label="Mercado Libre" />
-        <Chip size="small" label="Mercado Libre" />
+        <Chip size="small" label="Juan Camilo Ramírez" />
+        <Chip size="small" label="José David Maldonado" />
+        <Chip size="small" label="Vivián Peña Hurtado" />
       </Stack>
       <Divider
         sx={{
@@ -36,7 +30,7 @@ const Welcome = () => {
         Accede al menú de búsqueda y selecciona un producto
       </Typography>
     </Paper>
-  ) : null;
+  );
 };
 
 export { Welcome };

@@ -1,25 +1,24 @@
 import { StateCreator } from "zustand";
 
 // Interfaces
-import { DetailsState } from "@/interfaces";
+import { ProductDetails, ProductsState } from "@/interfaces";
 
-const detailsInitialState: DetailsState = {
-  details: [],
+const productsInitialState: ProductsState = {
+  products: [],
 };
 
-interface DetailsSlice {
-  productDetails: DetailsState;
-  setDetails: (productDetails: DetailsState) => void;
+interface ProductsSlice {
+  products: ProductDetails[][];
+  addProducts: (products: ProductDetails[][]) => void;
 }
 
-const createDetailsSlice: StateCreator<DetailsState> = (set) => ({
-  ...detailsInitialState,
-  setDetails: (productDetails: DetailsState) => {
+const createProductsSlice: StateCreator<ProductsState> = (set) => ({
+  ...productsInitialState,
+  addProducts: (products: ProductDetails[][]) =>
     set({
-      ...productDetails,
-    });
-  },
+      products,
+    }),
 });
 
-export { createDetailsSlice };
-export type { DetailsSlice };
+export { createProductsSlice };
+export type { ProductsSlice };

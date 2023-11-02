@@ -1,3 +1,2 @@
-export * from "./category";
-export * from "./productDetails";
-export * from "./products";
+export * from "./api"
+export * from "./meliApi"

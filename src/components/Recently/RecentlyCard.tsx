@@ -7,6 +7,7 @@ import {
   Chip,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 
 // Interfaces
 import { Recently } from "@/interfaces";
@@ -61,9 +62,11 @@ const RecentlyCard = (recently: Recently) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" size="small" endIcon={<InfoIcon />}>
-          Información
-        </Button>
+        <Link href={`products/${k_products}`} passHref>
+          <Button variant="contained" size="small" endIcon={<InfoIcon />}>
+            Información
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

@@ -10,12 +10,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 // Services
-import { getCategories, getProducts, getProductDetails } from "@/services";
+import { getCategories, getProducts } from "@/services";
 
 // Zustand
-import { useDrawerStore, useDetailsStore } from "@/zustand";
+import { useUIStore } from "@/zustand";
 
 // React Hook Form
 import { useForm } from "react-hook-form";
@@ -33,8 +34,9 @@ interface SearchProps {
 }
 
 const SearchMenu = () => {
-  const { drawer, setDrawer } = useDrawerStore();
-  const { setDetails } = useDetailsStore();
+  const router = useRouter();
+
+  const { drawer, setDrawer } = useUIStore();
   const { open } = drawer;
 
   const [categories, setCategories] = useState<Category[]>([]);
@@ -59,13 +61,10 @@ const SearchMenu = () => {
   const productId = watch("product") === "Seleccionar" ? "" : watch("product");
 
   const onSubmit = async ({ product }: SearchProps) => {
-    setLoading(true);
-    getProductDetails(product).then((res) => {
-      setDetails({ details: res });
-      setLoading(false);
-      reset();
-      setDrawer({ open: !open });
-    });
+    reset();
+    setDrawer({ open: !open });
+    setProducts([]);
+    router.push(`/products/${product}`);
   };
 
   useEffect(() => {

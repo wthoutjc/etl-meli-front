@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Zustand
-import { useDrawerStore } from "@/zustand";
+import { useUIStore } from "@/zustand";
 
 // Icons
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
-  const { drawer, setDrawer } = useDrawerStore();
+  const { drawer, setDrawer } = useUIStore();
   const { open } = drawer;
 
   return (

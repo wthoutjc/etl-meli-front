@@ -7,11 +7,9 @@ const NPL = () => {
   return (
     <Paper
       sx={{
-        width: "35%",
         display: "flex",
         flexDirection: "column",
-        p: 1.5,
-        ml: 2,
+        mt: 1.5,
         height: "100%",
       }}
     >
@@ -19,6 +17,7 @@ const NPL = () => {
         sx={{
           display: "flex",
           alignItems: "center",
+          p: 2,
         }}
       >
         <AddShoppingCartIcon sx={{ mr: 1 }} />
