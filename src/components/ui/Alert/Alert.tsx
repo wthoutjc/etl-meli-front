@@ -16,7 +16,7 @@ const Alert = (alert: IAlert) => {
           aria-label="close"
           color="inherit"
           size="small"
-          onClick={onClose}
+          // onClick={onClose}
         >
           <CloseIcon fontSize="inherit" />
         </IconButton>
