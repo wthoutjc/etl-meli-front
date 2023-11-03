@@ -68,12 +68,14 @@ const SearchMenu = () => {
     watch("category") === "Seleccionar" ? "" : watch("category");
   const productId = watch("product") === "Seleccionar" ? "" : watch("product");
 
-  const onSubmit = async ({ product }: SearchProps) => {
+  const onSubmit = async ({ product, from, to }: SearchProps) => {
     reset();
     setDrawer({ open: !open });
     setProducts([]);
     setExpanded(false);
-    router.push(`/products/${product}`);
+    router.push(
+      `/products/${product}${from && to ? `?from=${from}&to=${to}` : ""}`
+    );
   };
 
   useEffect(() => {
@@ -200,10 +202,7 @@ const SearchMenu = () => {
               }
               {...register("from", {
                 validate: (value) =>
-                  value &&
-                  expanded &&
-                  (watch("to") === undefined ||
-                    value <= (watch("to") ?? Infinity))
+                  value && expanded && watch("to") && value >= watch("to")!
                     ? "La fecha no puede ser mayor"
                     : undefined,
               })}
@@ -233,10 +232,7 @@ const SearchMenu = () => {
                     ? "La fecha es requerida"
                     : undefined,
                 validate: (value) =>
-                  value &&
-                  expanded &&
-                  (watch("from") === undefined ||
-                    value >= (watch("from") ?? -Infinity))
+                  value && expanded && watch("from") && value <= watch("from")!
                     ? "La fecha no puede ser menor"
                     : undefined,
               })}

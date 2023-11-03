@@ -7,7 +7,12 @@ import { conn } from "@/libs/db";
 import { ProductDetails } from "@/interfaces";
 
 export async function GET(req: Request) {
-  const id = req.url.split("product-details/")[1];
+  const id = req.url.split("product-details/")[1].split("?")[0];
+  const url = new URL(req.url);
+  const { from, to } = Object.fromEntries(url.searchParams) as {
+    from?: string;
+    to?: string;
+  };
 
   const result = (await conn.query(
     `SELECT Products.k_products, Products.name, DATE(date) as etl_date, 
@@ -15,9 +20,11 @@ export async function GET(req: Request) {
     FROM Products, Product_Details 
     WHERE Products.k_products = ?
     AND Product_Details.k_products = Products.k_products
+    ` +
+      (from && to ? `AND DATE(date) BETWEEN ? AND ?` : ``) +
+      `
     GROUP BY etl_date;`,
-    [id]
+    [id, from, to]
   )) as ProductDetails[];
-
   return NextResponse.json(result);
 }
