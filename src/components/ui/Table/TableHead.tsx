@@ -9,11 +9,11 @@ import {
 import { visuallyHidden } from "@mui/utils";
 
 // Interfaces
-import { Data, Order } from "@/interfaces";
+import { ProductDetails, Order } from "@/interfaces";
 
 interface HeadCell {
   disablePadding: boolean;
-  id: keyof Data;
+  id: keyof ProductDetails;
   label: string;
   numeric: boolean;
 }
@@ -22,7 +22,7 @@ interface Props {
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof ProductDetails
   ) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
@@ -32,34 +32,40 @@ interface Props {
 
 const headCells: readonly HeadCell[] = [
   {
-    id: "name",
+    id: "k_products",
     numeric: false,
     disablePadding: true,
-    label: "Dessert (100g serving)",
+    label: "ID Producto",
   },
   {
-    id: "calories",
+    id: "name",
     numeric: true,
     disablePadding: false,
-    label: "Calories",
+    label: "Producto",
   },
   {
-    id: "fat",
+    id: "etl_date",
     numeric: true,
     disablePadding: false,
-    label: "Fat (g)",
+    label: "Fecha ETL",
   },
   {
-    id: "carbs",
+    id: "available_quantity",
     numeric: true,
     disablePadding: false,
-    label: "Carbs (g)",
+    label: "Cantidad Disponible",
   },
   {
-    id: "protein",
+    id: "amount_sold",
     numeric: true,
     disablePadding: false,
-    label: "Protein (g)",
+    label: "Cantidad Vendida",
+  },
+  {
+    id: "k_sellers",
+    numeric: true,
+    disablePadding: false,
+    label: "Vendedor",
   },
 ];
 
@@ -73,7 +79,7 @@ const EnhancedTableHead = (props: Props) => {
     onRequestSort,
   } = props;
   const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+    (property: keyof ProductDetails) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 

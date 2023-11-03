@@ -19,7 +19,7 @@ import { DoughnutDetails } from "@/components/Details/Doughnuts/DoughnutDetails"
 
 // Icons
 import HelpIcon from "@mui/icons-material/Help";
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
 
 // Interfaces
 import { ProductDetails } from "@/interfaces";
@@ -116,7 +116,7 @@ const Details = ({ details }: Props) => {
                   p: 2,
                 }}
               >
-                <EnhancedTable />
+                <EnhancedTable rows={details} />
               </Box>
             )}
             {view === "grid" && (
