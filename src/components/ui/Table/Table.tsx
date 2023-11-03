@@ -11,8 +11,6 @@ import {
   TableRow,
   Paper,
   Checkbox,
-  FormControlLabel,
-  Switch,
 } from "@mui/material";
 
 // Type & Interfaces
@@ -22,42 +20,8 @@ import { EnhancedTableHead, EnhancedTableToolbar } from ".";
 // Moment
 import moment from "moment";
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key
-): (
-  a: { [key in Key]: string | number },
-  b: { [key in Key]: string | number }
-) => number {
-  return order === "desc"
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort<T>(
-  array: readonly T[],
-  comparator: (a: T, b: T) => number
-) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
+// Table Functions
+import { descendingComparator, getComparator, stableSort } from "@/utils";
 
 interface Props {
   rows: readonly ProductDetails[];
@@ -66,10 +30,9 @@ interface Props {
 const EnhancedTable = ({ rows }: Props) => {
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<keyof ProductDetails>("etl_date");
-  const [selected, setSelected] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
-  const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [selected, setSelected] = useState<readonly string[]>([]);
 
   const handleRequestSort = (
     _: React.MouseEvent<unknown>,
@@ -119,10 +82,6 @@ const EnhancedTable = ({ rows }: Props) => {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
   const isSelected = (id: string) => selected.indexOf(String(id)) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -141,18 +100,10 @@ const EnhancedTable = ({ rows }: Props) => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Compactar tabla"
-      />
       <Paper sx={{ width: "100%", mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={dense ? "small" : "medium"}
-          >
+          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -217,7 +168,7 @@ const EnhancedTable = ({ rows }: Props) => {
               {emptyRows > 0 && (
                 <TableRow
                   style={{
-                    height: (dense ? 33 : 53) * emptyRows,
+                    height: 53 * emptyRows,
                   }}
                 >
                   <TableCell colSpan={6} />

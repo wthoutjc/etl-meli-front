@@ -14,7 +14,7 @@ interface Props {
   };
 }
 
-const ProductPage = async ({ params, searchParams }: Props) => {
+const ProductPageId = async ({ params, searchParams }: Props) => {
   const { id } = params;
   const { from, to } = searchParams || {};
 
@@ -23,4 +23,4 @@ const ProductPage = async ({ params, searchParams }: Props) => {
   return <Details details={details} />;
 };
 
-export default ProductPage;
+export default ProductPageId;

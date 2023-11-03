@@ -15,7 +15,7 @@ import { useProductsStore } from "@/zustand";
 
 // Components
 import { NoProducts } from "@/components/Products/NoProducts";
-import { ProductCard } from "@/components/Products/ProductCard";
+import { ProductDetailsCard } from "@/components/Products/ProductDetailsCard";
 
 // Data
 import { OPTIONS } from "./ProductOptions";
@@ -109,7 +109,7 @@ const Products = () => {
           }}
         >
           {productsWithColor.map(({ product, color }, i) => (
-            <ProductCard key={i} product={product[0]} color={color} />
+            <ProductDetailsCard key={i} product={product[0]} color={color} />
           ))}
         </Box>
       </Box>

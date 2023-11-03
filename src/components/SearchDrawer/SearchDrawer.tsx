@@ -5,6 +5,11 @@ import {
   AppBar,
   Box,
   IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
   SwipeableDrawer,
   Toolbar,
 } from "@mui/material";
@@ -15,6 +20,9 @@ import { SearchMenu } from "@/components/SearchDrawer/SearchMenu";
 
 // Icons
 import MenuIcon from "@mui/icons-material/Menu";
+import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
+import StoreIcon from "@mui/icons-material/Store";
+import PlaceIcon from "@mui/icons-material/Place";
 
 const SearchDrawer = () => {
   const { drawer, setDrawer } = useUIStore();
@@ -72,6 +80,31 @@ const SearchDrawer = () => {
             </Toolbar>
           </AppBar>
           <SearchMenu />
+          <List>
+            {[
+              { title: "Productos", link: "/products", icon: <StoreIcon /> },
+              {
+                title: "Vendedores",
+                link: "/sellers",
+                icon: <SupervisedUserCircleIcon />,
+              },
+              { title: "Ubicaciones", link: "/locations", icon: <PlaceIcon /> },
+            ].map(({ icon, link, title }, index) => (
+              <Link
+                href={link}
+                passHref
+                key={index}
+                onClick={() => setDrawer({ open: !open })}
+              >
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemText primary={title} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ))}
+          </List>
         </Box>
       </Box>
     </SwipeableDrawer>
