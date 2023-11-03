@@ -10,6 +10,7 @@ const productsInitialState: ProductsState = {
 interface ProductsSlice {
   products: ProductDetails[][];
   addProducts: (products: ProductDetails[][]) => void;
+  deleteProduct: (id: string) => void;
 }
 
 const createProductsSlice: StateCreator<ProductsState> = (set) => ({
@@ -18,6 +19,12 @@ const createProductsSlice: StateCreator<ProductsState> = (set) => ({
     set({
       products,
     }),
+  deleteProduct: (id: string) =>
+    set((state) => ({
+      products: state.products.filter(
+        (product) => product[0].k_products !== id
+      ),
+    })),
 });
 
 export { createProductsSlice };

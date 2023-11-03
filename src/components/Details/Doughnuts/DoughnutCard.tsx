@@ -33,6 +33,7 @@ const DoughnutCard = (product: ProductHistory) => {
       }}
     >
       <CardHeader
+        sx={{ maxWidth: 100 }}
         title={
           <Typography variant="body1">
             <b>Fecha</b>

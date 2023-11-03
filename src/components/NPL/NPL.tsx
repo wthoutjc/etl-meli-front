@@ -1,7 +1,7 @@
 import { Box, Paper, Divider, Typography } from "@mui/material";
 
 // Icons
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 const NPL = () => {
   return (
@@ -20,7 +20,7 @@ const NPL = () => {
           p: 2,
         }}
       >
-        <AddShoppingCartIcon sx={{ mr: 1 }} />
+        <SmartToyIcon sx={{ mr: 1 }} />
         <Typography variant="h6" fontWeight={500}>
           NPL
         </Typography>

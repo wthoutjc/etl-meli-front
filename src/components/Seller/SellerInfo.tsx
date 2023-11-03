@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Box, Divider, Typography } from "@mui/material";
 
 // Icons
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import FeedIcon from '@mui/icons-material/Feed';
 
 // Services
 import { getSeller } from "@/services";
@@ -39,7 +39,7 @@ const SellerInfo = ({ sellerId }: Props) => {
   return (
     <>
       <Box sx={{ display: "flex", p: 1.5, alignItems: "center" }}>
-        <AddShoppingCartIcon sx={{ mr: 1 }} />
+        <FeedIcon sx={{ mr: 1 }} />
         <Typography variant="h6" fontWeight={500}>
           Información del vendendor
         </Typography>
@@ -48,7 +48,13 @@ const SellerInfo = ({ sellerId }: Props) => {
       {loading ? (
         <SellerSkeleton />
       ) : !seller ? (
-        <>Not found !</>
+        <Box
+          sx={{
+            p: 2,
+          }}
+        >
+          Vendedor no encontrado
+        </Box>
       ) : (
         <Seller seller={seller} />
       )}

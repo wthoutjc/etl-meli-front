@@ -35,6 +35,7 @@ const DoughnutDetails = ({ productId }: Props) => {
         mb: 2,
         height: "100%",
         p: 1,
+        overflow: "hidden",
       }}
       elevation={3}
     >

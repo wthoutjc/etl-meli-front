@@ -35,7 +35,6 @@ const GraphDetails = ({ details }: Props) => {
     <Line
       style={{
         width: "100%",
-        padding: "15px",
       }}
       options={{
         responsive: true,

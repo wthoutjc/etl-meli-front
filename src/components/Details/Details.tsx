@@ -1,6 +1,13 @@
 "use client";
 import { useState } from "react";
-import { Box, Divider, IconButton, Paper, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Paper,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 
 // Components
 import { DetailCard } from "@/components/Details/DetailCard";
@@ -11,8 +18,8 @@ import { NPL } from "@/components/NPL/NPL";
 import { DoughnutDetails } from "@/components/Details/Doughnuts/DoughnutDetails";
 
 // Icons
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import HelpIcon from "@mui/icons-material/Help";
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 // Interfaces
 import { ProductDetails } from "@/interfaces";
@@ -56,7 +63,7 @@ const Details = ({ details }: Props) => {
               alignItems: "center",
             }}
           >
-            <AddShoppingCartIcon sx={{ mr: 1 }} />
+            <QueryStatsIcon sx={{ mr: 1 }} />
             <Typography variant="h6" fontWeight={500}>
               Resultados -{" "}
               <b>
@@ -77,27 +84,26 @@ const Details = ({ details }: Props) => {
             display: "flex",
             width: "100%",
             height: "100%",
-            overflow: "hidden",
+            overflow: "auto",
           }}
         >
-          <ToggleMenu view={view} setView={setView} details={details} />
           <Box
             sx={{
               width: "100%",
               display: "flex",
             }}
           >
+            <ToggleMenu view={view} setView={setView} details={details} />
             <DoughnutDetails productId={details[0].k_products} />
             {view === "graph" && (
               <Paper
                 sx={{
-                  backgroundColor: "#001122",
                   width: "100%",
+                  backgroundColor: "#001122",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                elevation={3}
               >
                 <GraphDetails details={details} />
               </Paper>

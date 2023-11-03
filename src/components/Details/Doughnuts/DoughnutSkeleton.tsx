@@ -1,34 +1,25 @@
-import { Box, Skeleton } from "@mui/material";
+import { Card, CardContent, CardHeader, Skeleton } from "@mui/material";
 
 const DoughnutSkeleton = () => {
   return (
-    <>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          p: 2,
-        }}
-      >
-        <Skeleton variant="rounded" width={"40%"} height={40} />
-        <Skeleton variant="circular" width={90} height={90} />
-      </Box>
-      <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          p: 2,
-        }}
-      >
-        <Skeleton variant="rounded" width={"40%"} height={40} />
-        <Skeleton variant="circular" width={90} height={90} />
-      </Box>
-    </>
+    <Card
+      sx={{
+        minWidth: "100%",
+        height: 150,
+        display: "flex",
+        mt: 1,
+      }}
+    >
+      <CardHeader
+        title={<Skeleton variant="rounded" width={70} height={30} />}
+        subheader={
+          <Skeleton variant="rounded" width={60} height={20} sx={{ mt: 2 }} />
+        }
+      />
+      <CardContent>
+        <Skeleton variant="circular" width={110} height={110} />
+      </CardContent>
+    </Card>
   );
 };
 

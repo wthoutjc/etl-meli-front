@@ -25,4 +25,10 @@ export const useProductsStore = create<ProductsSlice>()((set) => ({
     set({
       products,
     }),
+  deleteProduct: (id: string) =>
+    set((state) => ({
+      products: state.products.filter(
+        (product) => product[0].k_products !== id
+      ),
+    })),
 }));

@@ -58,7 +58,7 @@ const ToggleMenu = ({ view, setView, details }: Props) => {
         value={view}
         exclusive
         onChange={handleChange}
-        sx={{ p: 1 }}
+        sx={{ p: 1, width: 60 }}
       >
         <ToggleButton value="graph" aria-label="graph">
           <ViewListIcon />
