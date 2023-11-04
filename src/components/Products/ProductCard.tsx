@@ -15,13 +15,24 @@ import Link from "next/link";
 // Icons
 import InfoIcon from "@mui/icons-material/Info";
 
-const ProductCard = (product: Product) => {
+interface TopProducts extends Product {
+  total_sold: number;
+  total_available: number;
+}
+
+interface Props {
+  product: TopProducts;
+  index: number;
+}
+
+const ProductCard = ({ product, index }: Props) => {
   const { condition, k_categories, k_products, name, price } = product;
 
   return (
     <Card
       sx={{
-        mb: 2,
+        m: 1,
+        width: 350,
       }}
     >
       <CardContent>
@@ -32,7 +43,7 @@ const ProductCard = (product: Product) => {
           }}
         >
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {k_products}
+            {index + 1} - {k_products}
           </Typography>
           <Chip label={condition} variant="outlined" />
         </Box>
@@ -42,7 +53,7 @@ const ProductCard = (product: Product) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link href={`products/${k_products}`} passHref>
+        <Link href={`/products/${k_products}`} passHref>
           <Button variant="contained" size="small" endIcon={<InfoIcon />}>
             Información
           </Button>
