@@ -10,17 +10,16 @@ import {
 } from "@mui/material";
 
 // Interfaces
-import { TopProductsLocation } from "@/interfaces";
+import { TopLocation } from "@/interfaces";
 
 //Charts
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, Tooltip, ArcElement } from "chart.js";
-import { ProductHistory } from "@/interfaces";
 import Link from "next/link";
 ChartJS.register(ArcElement, Tooltip);
 
 interface Props {
-  location: TopProductsLocation;
+  location: TopLocation;
   index: number;
 }
 

@@ -1,13 +1,13 @@
 import { Box, Divider, Paper, Typography } from "@mui/material";
 
 // Services
-import { getTopProductsByLocations } from "@/services";
+import { getTopLocations } from "@/services";
 
 // Components
 import { Locations } from "@/components";
 
 const LocationsPage = async () => {
-  const cities = await getTopProductsByLocations();
+  const cities = await getTopLocations();
 
   return (
     <Box>

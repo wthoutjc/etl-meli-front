@@ -20,7 +20,7 @@ const SellerPageId = async ({ params }: { params: { id: string } }) => {
           Productos del vendedor
         </Typography>
         {products.map((product, i) => (
-          <ProductCard key={i} {...product} />
+          <ProductCard key={i} product={product} index={i} />
         ))}
       </Paper>
     </Box>

@@ -1,4 +1,4 @@
-export interface TopProductsLocation {
+export interface TopLocation {
   Country: string;
   department: string;
   city: string;

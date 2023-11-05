@@ -16,8 +16,8 @@ import Link from "next/link";
 import InfoIcon from "@mui/icons-material/Info";
 
 interface TopProducts extends Product {
-  total_sold: number;
-  total_available: number;
+  total_sold?: number;
+  total_available?: number;
 }
 
 interface Props {

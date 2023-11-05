@@ -4,10 +4,10 @@ import { Paper } from "@mui/material";
 import { LocationCard } from "@/components/Locations/LocationCard";
 
 // Interfaces
-import { TopProductsLocation } from "@/interfaces";
+import { TopLocation } from "@/interfaces";
 
 interface Props {
-  cities: TopProductsLocation[];
+  cities: TopLocation[];
 }
 
 const Locations = ({ cities }: Props) => {
