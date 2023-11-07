@@ -14,6 +14,8 @@ const getTopProductsByLocations = async (
 ): Promise<TopProductsLocation[]> => {
   const response = await fetch(`${process.env.API_URL}/api/locations/${id}`);
   const data = await response.json();
+  console.log(data);
+  
   return data;
 };
 
