@@ -9,14 +9,14 @@ import {
 } from "@mui/material";
 
 // Interfaces
-import { TopProduct } from "@/interfaces";
+import { Product, TopProduct } from "@/interfaces";
 import Link from "next/link";
 
 // Icons
 import InfoIcon from "@mui/icons-material/Info";
 
 interface Props {
-  product: TopProduct;
+  product: TopProduct | Product;
   index: number;
 }
 
