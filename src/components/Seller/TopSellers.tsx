@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from "react";
 import { Box, Divider, Paper, Typography } from "@mui/material";
 
 // Interfaces
@@ -6,10 +8,23 @@ import { TopSellers } from "@/interfaces";
 // Components
 import { TopSellerCard } from "@/components/Seller/TopSellerCard";
 
-interface Props {
-  topSellers: TopSellers[];
-}
-const TopSellers = ({ topSellers }: Props) => {
+// Services
+import { getSellers } from "@/services";
+
+const TopSellers = () => {
+  const [topSellers, settopSellers] = useState<TopSellers[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchTopSellers = async () => {
+      const sellers = await getSellers();
+      settopSellers(sellers);
+      setIsLoading(false);
+    };
+
+    fetchTopSellers();
+  }, []);
+
   return (
     <Box>
       <Paper

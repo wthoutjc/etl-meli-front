@@ -1,8 +1,5 @@
 import { Box, Divider, Paper, Typography } from "@mui/material";
 
-// Services
-import { getTopProductsByLocations } from "@/services";
-
 // Components
 import { LocationProducts } from "@/components";
 
@@ -14,7 +11,6 @@ const LocationPage = async ({
   };
 }) => {
   const { id } = params;
-  const products = await getTopProductsByLocations(id);
 
   return (
     <Box>
@@ -42,7 +38,7 @@ const LocationPage = async ({
           Colombia
         </Typography>
       </Paper>
-      <LocationProducts products={products} />
+      <LocationProducts id={id} />
     </Box>
   );
 };

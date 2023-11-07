@@ -1,14 +1,9 @@
 import { Box, Divider, Paper, Typography } from "@mui/material";
 
-// Services
-import { getTopLocations } from "@/services";
-
 // Components
 import { Locations } from "@/components";
 
 const LocationsPage = async () => {
-  const cities = await getTopLocations();
-
   return (
     <Box>
       <Paper
@@ -34,7 +29,7 @@ const LocationsPage = async () => {
           Las mejores locaciones de la plataforma de Mercado Libre - Colombia
         </Typography>
       </Paper>
-      <Locations cities={cities} />
+      <Locations />
     </Box>
   );
 };

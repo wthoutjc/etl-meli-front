@@ -2,11 +2,7 @@
 import { TopProductsLocation } from "@/interfaces";
 
 const getTopLocations = async () => {
-  console.log(`API_URL = ${process.env.API_URL}/api/locations/top-products`);
-  const response = await fetch(
-    `${process.env.API_URL}/api/locations/top-products`
-  );
-  console.log(response);
+  const response = await fetch(`/api/locations/top-products`);
   const data = await response.json();
   return data;
 };
@@ -14,11 +10,8 @@ const getTopLocations = async () => {
 const getTopProductsByLocations = async (
   id: string
 ): Promise<TopProductsLocation[]> => {
-  console.log(`${process.env.API_URL}/api/locations/${id}`);
-  const response = await fetch(`${process.env.API_URL}/api/locations/${id}`);
-  console.log(response);
+  const response = await fetch(`/api/locations/${id}`);
   const data = await response.json();
-
   return data;
 };
 
