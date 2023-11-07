@@ -36,7 +36,7 @@ const LocationProducts = ({ id }: Props) => {
         flexWrap: "wrap",
       }}
     >
-      {products.map((product, i) => (
+      {products?.map((product, i) => (
         <LocationProductCard key={i} product={product} index={i} />
       ))}
     </Paper>

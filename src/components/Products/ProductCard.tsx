@@ -9,19 +9,14 @@ import {
 } from "@mui/material";
 
 // Interfaces
-import { Product } from "@/interfaces";
+import { TopProduct } from "@/interfaces";
 import Link from "next/link";
 
 // Icons
 import InfoIcon from "@mui/icons-material/Info";
 
-interface TopProducts extends Product {
-  total_sold?: number;
-  total_available?: number;
-}
-
 interface Props {
-  product: TopProducts;
+  product: TopProduct;
   index: number;
 }
 

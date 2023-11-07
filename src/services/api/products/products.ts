@@ -1,4 +1,4 @@
-import { Product } from "@/interfaces";
+import { TopProduct } from "@/interfaces";
 
 const getProducts = async (categoryId: string) => {
   const res = await fetch(`/api/products/${categoryId}`);
@@ -6,13 +6,8 @@ const getProducts = async (categoryId: string) => {
   return products;
 };
 
-interface TopProducts extends Product {
-  total_sold: number;
-  total_available: number;
-}
-
-const getTopProducts = async (): Promise<TopProducts[]> => {
-  const res = await fetch(`${process.env.API_URL}/api/products/top`);
+const getTopProducts = async (): Promise<TopProduct[]> => {
+  const res = await fetch(`/api/products/top`);
   const products = await res.json();
   return products;
 };

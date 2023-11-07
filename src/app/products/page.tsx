@@ -1,14 +1,9 @@
 import { Box, Divider, Paper, Typography } from "@mui/material";
 
 // Components
-import { ProductCard } from "@/components";
-
-// Services
-import { getTopProducts } from "@/services";
+import { TopProducts } from "@/components/Products/TopProducts";
 
 const ProductPage = async () => {
-  const products = await getTopProducts();
-
   return (
     <Box>
       <Paper
@@ -34,11 +29,7 @@ const ProductPage = async () => {
           Los mejores productos de la plataforma de Mercado Libre - Colombia
         </Typography>
       </Paper>
-      <Paper sx={{ p: 2, display: "flex", flexWrap: "wrap" }}>
-        {products.map((product, i) => (
-          <ProductCard key={i} product={product} index={i} />
-        ))}
-      </Paper>
+      <TopProducts />
     </Box>
   );
 };

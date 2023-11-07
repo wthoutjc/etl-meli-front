@@ -1,9 +1,6 @@
 // Details
 import { Details } from "@/components";
 
-// Services
-import { getProductDetails } from "@/services";
-
 interface Props {
   params: {
     id: string;
@@ -18,9 +15,7 @@ const ProductPageId = async ({ params, searchParams }: Props) => {
   const { id } = params;
   const { from, to } = searchParams || {};
 
-  const details = await getProductDetails(id, from, to);
-
-  return <Details details={details} />;
+  return <Details id={id} from={from} to={to} />;
 };
 
 export default ProductPageId;

@@ -1,14 +1,10 @@
 import { Box, Paper, Typography } from "@mui/material";
 
-// Services
-import { getProductsBySeller } from "@/services";
-
 // Components
-import { SellerInfo, ProductCard } from "@/components";
+import { SellerInfo, Sellers } from "@/components";
 
 const SellerPageId = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const products = await getProductsBySeller(id);
 
   return (
     <Box>
@@ -19,9 +15,7 @@ const SellerPageId = async ({ params }: { params: { id: string } }) => {
         <Typography variant="h6" fontWeight={600}>
           Productos del vendedor
         </Typography>
-        {products.map((product, i) => (
-          <ProductCard key={i} product={product} index={i} />
-        ))}
+        <Sellers sellerId={id} />
       </Paper>
     </Box>
   );

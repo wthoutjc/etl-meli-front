@@ -14,9 +14,7 @@ const getSellers = async (): Promise<TopSellers[]> => {
 };
 
 const getProductsBySeller = async (sellerId: string): Promise<Product[]> => {
-  const res = await fetch(
-    `${process.env.API_URL}/api/sellers/${sellerId}/products`
-  );
+  const res = await fetch(`/api/sellers/${sellerId}/products`);
   const products = await res.json();
   return products;
 };

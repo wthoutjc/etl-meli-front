@@ -8,9 +8,7 @@ const getProductDetails = async (
 ): Promise<ProductDetails[]> => {
   try {
     const res = await fetch(
-      `${process.env.API_URL}/api/product-details/${id}${
-        from && to ? `?from=${from}&to=${to}` : ""
-      }`
+      `/api/product-details/${id}${from && to ? `?from=${from}&to=${to}` : ""}`
     );
     const productDetails = await res.json();
     return productDetails as ProductDetails[];
