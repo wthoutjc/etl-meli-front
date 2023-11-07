@@ -2,7 +2,7 @@
 import { TopProductsLocation } from "@/interfaces";
 
 const getTopLocations = async () => {
-  console.log(`${process.env.API_URL}/api/locations/top-products`);
+  console.log(`API_URL = ${process.env.API_URL}/api/locations/top-products`);
   const response = await fetch(
     `${process.env.API_URL}/api/locations/top-products`
   );
