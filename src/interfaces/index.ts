@@ -6,3 +6,4 @@ export * from "./recently";
 export * from "./sellers";
 export * from "./table";
 export * from "./locations";
+export * from "./npl";

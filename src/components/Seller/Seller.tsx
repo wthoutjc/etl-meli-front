@@ -48,6 +48,7 @@ const Seller = ({ seller }: Props) => {
           subheader={k_sellers}
         />
       </Card>
+
       <Paper elevation={3} sx={{ p: 1, mb: 2 }}>
         <Box
           sx={{

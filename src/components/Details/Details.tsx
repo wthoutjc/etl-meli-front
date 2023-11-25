@@ -44,8 +44,6 @@ const Details = ({ id, from, to }: Props) => {
   useEffect(() => {
     const fetchDetails = async () => {
       const details = await getProductDetails(id, from, to);
-      console.log(details);
-
       setDetails(details);
       setIsLoading(false);
     };
@@ -170,7 +168,7 @@ const Details = ({ id, from, to }: Props) => {
             <Paper>
               <SellerInfo sellerId={details[0].k_sellers} />
             </Paper>
-            <NPL />
+            <NPL id={details[0].k_products} />
           </Box>
         </>
       )}
